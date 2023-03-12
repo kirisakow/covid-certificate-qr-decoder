@@ -1,6 +1,5 @@
 #!./venv/bin/python3
 from cose.messages import CoseMessage, Sign1Message
-from typing import Union
 import argparse
 import base45
 import cbor2
