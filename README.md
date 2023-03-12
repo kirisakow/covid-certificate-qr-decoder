@@ -1,3 +1,5 @@
+**WARNING** This library is still under development and intended for experimental purposes only.
+
 # COVID Vaccination Certificate QR code decoder
 
 ```sh
