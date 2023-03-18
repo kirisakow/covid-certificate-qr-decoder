@@ -13,7 +13,7 @@ python3 ./webcam_capture_QR_code.py | python3 ./covid-certificate-qr-decoder.py
 ## Installation
 
 1. Clone the repository.
-2. Install dependencies: `python3 -m pip -r requirements.txt`
+2. Install dependencies: `python3 -m pip install -r requirements.txt`
 
 ## Usage
 
