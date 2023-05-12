@@ -12,32 +12,28 @@ from pyzbar import pyzbar
 import sys
 
 @contextmanager
-def managed_videocapture(cam_indexes):
-    cam_OK = False
-    for cam_index in cam_indexes:
-        try:
-            # Code to acquire resource, e.g.:
-            capture = cv2.VideoCapture(cam_index)
-            # Check if the webcam is opened correctly
-            if capture.isOpened():
-                cam_OK = True
-                yield capture
-        finally:
-            # Code to release resource, e.g.:
-            capture.release()
-    if not cam_OK:
-        raise IOError("Cannot open webcam")
-        sys.exit()
+def managed_videocapture(cam_index):
+    # Code to acquire resource, e.g.:
+    capture = cv2.VideoCapture(cam_index)
+    try:
+        yield capture
+    finally:
+        # Code to release resource, e.g.:
+        capture.release()
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="""Read QR-code with your webcam""",
                                      epilog="Source code: https://github.com/kirisakow/covid-certificate-qr-decoder")
-    parser.add_argument('--camera-index', '--camera_index', default=0, type=int, nargs='+',
+    parser.add_argument('--camera-index', '--camera_index', default=0, type=int, nargs=1,
                     help="(optional, default: %(default)s) Camera index. For desktop machines default is usually 0, for mobile devices it can vary (try 1 or 2).")
     args = parser.parse_args()
     # Initialize webcam stream
     with managed_videocapture(args.camera_index) as cap:
+        # Check if the webcam is opened correctly
+        if not cap.isOpened():
+            raise IOError("Cannot open webcam")
+            sys.exit()
         while True:
             # Capture frame-by-frame
             ret, frame = cap.read()
