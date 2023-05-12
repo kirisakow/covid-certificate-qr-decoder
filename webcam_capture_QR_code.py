@@ -25,7 +25,7 @@ def managed_videocapture(cam_indexes):
         finally:
             # Code to release resource, e.g.:
             capture.release()
-    if ! cam_OK:
+    if not cam_OK:
         raise IOError("Cannot open webcam")
         sys.exit()
 
