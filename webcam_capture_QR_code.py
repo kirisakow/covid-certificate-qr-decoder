@@ -28,8 +28,9 @@ if __name__ == "__main__":
     parser.add_argument('--camera-index', '--camera_index', default=0, type=int, nargs=1,
                     help="(optional, default: %(default)s) Camera index. For desktop machines default is usually 0, for mobile devices it can vary (try 1 or 2).")
     args = parser.parse_args()
+    camera_index = args.camera_index[0]
     # Initialize webcam stream
-    with managed_videocapture(args.camera_index) as cap:
+    with managed_videocapture(camera_index) as cap:
         # Check if the webcam is opened correctly
         if not cap.isOpened():
             raise IOError("Cannot open webcam")
