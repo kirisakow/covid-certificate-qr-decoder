@@ -24,7 +24,8 @@ Launch one or the other script, or both, or any of them in combination with othe
 python3 ./webcam_capture_QR_code.py | python3 ./covid-certificate-qr-decoder.py
 
 # or decode any base45 string:
-echo "HC1:........." | python3 ./covid-certificate-qr-decoder.py
+echo 'HC1:.........' | python3 ./covid-certificate-qr-decoder.py
+# IMPORTANT NOTE: if you use BASH, the base45 string must be enclosed in single —not double— quotes, as we don't want BASH to interpret $ as a special character.
 
 # or scan any QR-code with your webcam:
 python3 ./webcam_capture_QR_code.py
